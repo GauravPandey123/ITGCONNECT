@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
@@ -16,7 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -28,7 +29,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +38,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
@@ -47,6 +48,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.EnumSet;
 import java.util.*;
+
 public class TerminalFragment extends Fragment implements ServiceConnection, SerialListener {
 
     private enum Connected { False, Pending, True }
@@ -60,7 +62,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     private TextView sendText;
     private ControlLines controlLines;
     private TextUtil.HexWatcher hexWatcher;
-
+    private ArrayList<String> recieveTextModels;
     private Connected connected = Connected.False;
     private boolean initialStart = true;
     private boolean hexEnabled = true;
@@ -90,7 +92,10 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     private String nonDLMSVer="45 45 4F 56 45 52 0D 0A";
     private String nonDLMSSerialNumber="45 45 4F 48 48 54 0D 0A";
     private String parameterDisplay="";
+    private ArrayList<String> paramlist=new ArrayList<>();
 
+    private LinearLayout linearLayoutSerailNo,linearLayoutKvah,linearLayoutwmsd;
+private TextView textViewKwhNo,textViewKvahno,textViewKWmdNo,textViewkvaMdNo,textViewSerailNo;
 
     public TerminalFragment() {
         broadcastReceiver = new BroadcastReceiver() {
@@ -263,6 +268,9 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
 
                                 parameterDisplay+="kVA MD  :"+ kVAMD +"\n";
+                                recieveTextModels.add(parameterDisplay);
+
+
 
                                 break;
                         }
@@ -318,7 +326,28 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
                                 break;
                             case 9:
-                                receiveText.setText(parameterDisplay);
+                               // receiveText.setText(parameterDisplay);
+                                paramlist.add(parameterDisplay);
+                                saveArrayList(paramlist,"shrd");
+                                String string = parameterDisplay;
+                                String[] parts = string.split("\n");
+                                String part0 = parts[0]; // 004
+                                String part1 = parts[1]; // 034556
+                                String part2 = parts[2];
+                                String part3 = parts[3];
+                                String part4 = parts[4];
+                                String[] serial = part0.split(":");
+
+                                textViewSerailNo.setText(serial[1]);
+                                String[] kwh = part1.split(":");
+
+                                textViewKwhNo.setText(kwh[1]);
+                                String[] kvah = part2.split(":");
+                                textViewKvahno.setText(kvah[1]);
+                                String[] kwmd = part3.split(":");
+                                textViewKWmdNo.setText(kwmd[1]);
+                                String[] kvamd = part4.split(":");
+                                textViewkvaMdNo.setText(kvamd[1]);
                                 timer.cancel();
                                 break;
                         }
@@ -360,6 +389,8 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
         }
         return sum;
     }
+
+
     public static String hexToASCII(String hex)
     {
         // initialize the ASCII code string as empty.
@@ -472,10 +503,15 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_terminal, container, false);
         receiveText = view.findViewById(R.id.receive_text);                          // TextView performance decreases with number of spans
-        receiveText.setTextColor(getResources().getColor(R.color.colorRecieveText)); // set as default color to reduce number of spans
         receiveText.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         sendText = view.findViewById(R.id.send_text);
+
+        textViewKwhNo=view.findViewById(R.id.textViewKwhNo);
+        textViewKvahno=view.findViewById(R.id.textViewKvahno);
+        textViewKWmdNo=view.findViewById(R.id.textViewKWmdNo);
+        textViewkvaMdNo=view.findViewById(R.id.textViewkvaMdNo);
+        textViewSerailNo=view.findViewById(R.id.textViewSerailNo);
         hexWatcher = new TextUtil.HexWatcher(sendText);
         hexWatcher.enable(hexEnabled);
         sendText.addTextChangedListener(hexWatcher);
@@ -483,7 +519,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
         View sendBtn = view.findViewById(R.id.send_btn);
 
-
+        recieveTextModels = new ArrayList<String>();
 
 
         sendBtn.setOnClickListener(v -> send(sendText.getText().toString()));
@@ -703,6 +739,17 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
         SpannableStringBuilder spn = new SpannableStringBuilder(str+'\n');
         spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorStatusText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         receiveText.append(spn);
+    }
+
+
+    public void saveArrayList(ArrayList<String> list, String key){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        editor.putString(key, json);
+        editor.apply();
+
     }
 
     /*

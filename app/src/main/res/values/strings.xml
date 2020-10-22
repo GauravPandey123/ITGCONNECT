@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Simple USB Terminal</string>
     <string name="devices">no USB devices found</string>
+    <string name="show_history">Show History</string>
+    <string name="abc">abc</string>
+    <string name="meterhistory">Show Meter History</string>
+    <string name="serail">Serial#</string>
+    <string name="kwh">KWH</string>
+    <string name="kvah">kVAh</string>
+    <string name="kWMD">kWMD</string>
 </resources>

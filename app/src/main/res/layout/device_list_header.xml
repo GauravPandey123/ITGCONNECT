@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/listDivider"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <TextView
@@ -13,7 +13,11 @@
         android:layout_marginBottom="12dp"
         android:gravity="center"
         android:layout_centerInParent="true"
-        android:text="@string/devices"
+        android:text="Andro Metrer"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:textColor="#1E1E1E"
+        android:fontFamily="sans-serif-medium"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <ProgressBar
@@ -28,7 +32,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/readdata"
         android:text="Read"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="20sp"
         android:layout_margin="10dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/rect" />
+        android:background="#4e2095" />
 </RelativeLayout>

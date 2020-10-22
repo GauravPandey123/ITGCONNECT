@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -79,6 +80,211 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/linearLayoutSerailNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewSerial"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:gravity="center"
+
+                android:background="#1c2b2d"
+                android:text="@string/serail">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/textViewSerailNo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="#fff"
+                android:background="#1f6f8b"
+                android:textSize="14sp"
+                android:gravity="center"
+
+                android:text="Searialno">
+
+            </TextView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#1d1d1d">
+
+        </View>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutKwh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewKwh"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@android:color/white"
+                android:background="#99a8b2"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="@string/kwh">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/textViewKwhNo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="#1e1e1e"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:background="#e6d5b8"
+                android:text="KWH">
+
+            </TextView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#1d1d1d">
+
+        </View>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutKvah"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewVah"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:background="#16697a"
+                android:textSize="20sp"
+                android:text="@string/kvah">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/textViewKvahno"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="#1E1E1E"
+                android:textSize="16sp"
+                android:background="#db6400"
+                android:gravity="center"
+                android:text="Kvahno">
+
+            </TextView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#1d1d1d">
+
+        </View>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutwmsd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/kWMD"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:background="#ffa62b"
+                android:text="@string/kWMD">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/textViewKWmdNo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="#1E1E1E"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:background="#f8f1f1"
+                android:text="KWmdNo">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#1d1d1d">
+
+        </View>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutkvamd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/kvaMd"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:background="#8db596"
+                android:gravity="center"
+                android:text="@string/kWMD">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/textViewkvaMdNo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="#1E1E1E"
+                android:textSize="16sp"
+                android:background="#92817a"
+                android:gravity="center"
+                android:text="KVaMdNo">
+
+            </TextView>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:background="?android:attr/listDivider"
@@ -92,6 +298,8 @@
         android:freezesText="true"
         android:gravity="bottom"
         android:scrollbars="vertical"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#1E1E1e"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <View
@@ -110,6 +318,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:inputType="text|textNoSuggestions"
+            android:backgroundTint="@color/colorPrimary"
             android:singleLine="true" />
 
         <ImageButton

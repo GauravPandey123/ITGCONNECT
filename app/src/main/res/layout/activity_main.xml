@@ -14,8 +14,40 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" />
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/media_image"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/logo"
+                    android:layout_marginStart="20dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_history"
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="end|center_vertical">
+
+                </TextView>
+            </RelativeLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
