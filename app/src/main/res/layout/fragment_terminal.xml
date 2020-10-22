@@ -99,7 +99,7 @@
                 android:textSize="20sp"
                 android:gravity="center"
 
-                android:background="#1c2b2d"
+                android:background="#99a8b2"
                 android:text="@string/serail">
 
             </TextView>
@@ -108,9 +108,9 @@
                 android:id="@+id/textViewSerailNo"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:textColor="#fff"
-                android:background="#1f6f8b"
-                android:textSize="14sp"
+                android:textColor="#1e1e1e"
+                android:background="#e6d5b8"
+                android:textSize="16sp"
                 android:gravity="center"
 
                 android:text="Searialno">
@@ -180,7 +180,7 @@
                 android:layout_height="40dp"
                 android:textColor="@android:color/white"
                 android:gravity="center"
-                android:background="#16697a"
+                android:background="#99a8b2"
                 android:textSize="20sp"
                 android:text="@string/kvah">
 
@@ -192,7 +192,7 @@
                 android:layout_height="40dp"
                 android:textColor="#1E1E1E"
                 android:textSize="16sp"
-                android:background="#db6400"
+                android:background="#e6d5b8"
                 android:gravity="center"
                 android:text="Kvahno">
 
@@ -221,7 +221,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:gravity="center"
-                android:background="#ffa62b"
+                android:background="#99a8b2"
                 android:text="@string/kWMD">
 
             </TextView>
@@ -233,7 +233,7 @@
                 android:textColor="#1E1E1E"
                 android:textSize="16sp"
                 android:gravity="center"
-                android:background="#f8f1f1"
+                android:background="#e6d5b8"
                 android:text="KWmdNo">
 
             </TextView>
@@ -261,7 +261,7 @@
                 android:layout_height="40dp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
-                android:background="#8db596"
+                android:background="#99a8b2"
                 android:gravity="center"
                 android:text="@string/kWMD">
 
@@ -273,7 +273,7 @@
                 android:layout_height="40dp"
                 android:textColor="#1E1E1E"
                 android:textSize="16sp"
-                android:background="#92817a"
+                android:background="#e6d5b8"
                 android:gravity="center"
                 android:text="KVaMdNo">
 
@@ -310,6 +310,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:orientation="horizontal">
 
         <EditText
@@ -327,7 +328,16 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_send_white_24dp" />
     </LinearLayout>
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/done"
+        android:text="Done"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="#4e2095" />
 
 </LinearLayout>
 

@@ -31,6 +31,7 @@ public class SplashActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.enter, R.anim.exit);
 
                 startActivity(intent);
+                finish();
                 // HomeActivity.class is the activity to go after showing the splash screen.
             }
 

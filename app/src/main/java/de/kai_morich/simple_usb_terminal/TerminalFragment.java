@@ -29,6 +29,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,6 +94,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     private String nonDLMSSerialNumber="45 45 4F 48 48 54 0D 0A";
     private String parameterDisplay="";
     private ArrayList<String> paramlist=new ArrayList<>();
+    private Button done;
 
     private LinearLayout linearLayoutSerailNo,linearLayoutKvah,linearLayoutwmsd;
 private TextView textViewKwhNo,textViewKvahno,textViewKWmdNo,textViewkvaMdNo,textViewSerailNo;
@@ -504,7 +506,7 @@ private TextView textViewKwhNo,textViewKvahno,textViewKWmdNo,textViewkvaMdNo,tex
         View view = inflater.inflate(R.layout.fragment_terminal, container, false);
         receiveText = view.findViewById(R.id.receive_text);                          // TextView performance decreases with number of spans
         receiveText.setMovementMethod(ScrollingMovementMethod.getInstance());
-
+        done = view.findViewById(R.id.done);
         sendText = view.findViewById(R.id.send_text);
 
         textViewKwhNo=view.findViewById(R.id.textViewKwhNo);
@@ -523,6 +525,12 @@ private TextView textViewKwhNo,textViewKvahno,textViewKWmdNo,textViewkvaMdNo,tex
 
 
         sendBtn.setOnClickListener(v -> send(sendText.getText().toString()));
+        done.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.enter, R.anim.exit);
+
+            startActivity(intent);
+        });
         controlLines = new ControlLines(view);
         cmdid=0;
         startTimer();
